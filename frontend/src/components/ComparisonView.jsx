@@ -34,15 +34,15 @@ export const ComparisonView = ({ articles, title }) => {
             <div
               style={{
                 ...styles.biasHeader,
-                backgroundColor: getBiasColor(article.source),
+                backgroundColor: getBiasColor(article.source_id),
               }}
             >
               <div style={styles.sourceInfo}>
-                <h4 style={styles.sourceName}>{article.source?.name || 'Unknown'}</h4>
-                <span style={styles.biasLabel}>{getBiasLabel(article.source)}</span>
+                <h4 style={styles.sourceName}>{article.source_id?.name || 'Unknown'}</h4>
+                <span style={styles.biasLabel}>{getBiasLabel(article.source_id)}</span>
               </div>
-              {article.source?.owner && (
-                <p style={styles.owner}>🏢 {article.source.owner}</p>
+              {article.source_id?.ownership && (
+                <p style={styles.owner}>🏢 {article.source_id.ownership}</p>
               )}
             </div>
             
@@ -50,10 +50,10 @@ export const ComparisonView = ({ articles, title }) => {
               <h5 style={styles.articleTitle}>{article.title}</h5>
               <p style={styles.articleDescription}>{article.description}</p>
               
-              {article.fact_checks && article.fact_checks.length > 0 && (
+              {article.fact_check_ids && article.fact_check_ids.length > 0 && (
                 <div style={styles.factChecks}>
                   <strong style={styles.factCheckLabel}>Fact Checks:</strong>
-                  {article.fact_checks.map((fc, idx) => (
+                  {article.fact_check_ids.map((fc, idx) => (
                     <div key={idx} style={styles.factCheckItem}>
                       <span style={{ ...styles.verdict, backgroundColor: getVerdictColor(fc.verdict) }}>
                         {fc.verdict}

@@ -25,15 +25,10 @@ export const BlindspotFeed = ({ onBack }) => {
     loadBlindspots();
   }, []);
 
-  const handleSelectBlindspot = async (blindspot) => {
+  const handleSelectBlindspot = (blindspot) => {
     setSelectedBlindspot(blindspot);
-    try {
-      const comparison = await api.getArticleComparison(blindspot._id);
-      setArticles(comparison);
-    } catch (err) {
-      console.error('Failed to load comparison articles', err);
-      setArticles(blindspot.articles || []);
-    }
+    // Articles are already populated in blindspot object
+    setArticles(blindspot.article_ids || []);
   };
 
   if (loading) {

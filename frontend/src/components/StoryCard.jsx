@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const StoryCard = ({ cluster, onClick }) => {
-  const { _id, title, summary, articles, bias_distribution, coverage_gap } = cluster;
-  const totalArticles = articles ? articles.length : 0;
+  const { _id, title, summary, article_ids, bias_distribution, coverage_gap } = cluster;
+  const totalArticles = article_ids ? article_ids.length : 0;
 
   const getGapIndicator = () => {
     if (!coverage_gap) return null;

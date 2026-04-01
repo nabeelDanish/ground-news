@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const BlindspotCard = ({ blindspot, onClick }) => {
-  const { _id, title, summary, coverage_gap, articles } = blindspot;
+  const { _id, title, summary, coverage_gap, article_ids } = blindspot;
 
   const getGapDescription = () => {
     if (!coverage_gap) return 'Unknown coverage gap';
@@ -57,7 +57,7 @@ export const BlindspotCard = ({ blindspot, onClick }) => {
       </div>
 
       <div style={styles.footer}>
-        <span style={styles.articleCount}>📄 {articles ? articles.length : 0} articles covering this</span>
+        <span style={styles.articleCount}>📄 {article_ids ? article_ids.length : 0} articles covering this</span>
       </div>
     </div>
   );

@@ -12,15 +12,18 @@ export const Dashboard = ({ onSelectStory }) => {
     const loadData = async () => {
       try {
         setLoading(true);
+        console.log(`📡 Fetching from: http://localhost:${import.meta.env.VITE_API_PORT || 5000}/api`);
         const [clustersData, sourcesData] = await Promise.all([
           api.getClusters(),
           api.getSources(),
         ]);
+        console.log(`✅ Loaded ${clustersData.length} clusters, ${sourcesData.length} sources`);
         setClusters(clustersData);
         setSources(sourcesData);
       } catch (err) {
-        setError('Failed to load data. Make sure the backend is running on http://localhost:5000');
-        console.error(err);
+        const apiPort = import.meta.env.VITE_API_PORT || 5000;
+        setError(`Failed to load data from http://localhost:${apiPort}/api. ${err.message}`);
+        console.error('API Error:', err);
       } finally {
         setLoading(false);
       }

@@ -11,19 +11,19 @@ export const ComparisonPage = ({ cluster, onBack }) => {
     const loadComparison = async () => {
       try {
         setLoading(true);
-        const data = await api.getArticleComparison(cluster._id);
-        setArticles(data);
+        // Articles are already populated in cluster object
+        const articlesData = cluster.article_ids || [];
+        setArticles(articlesData);
       } catch (err) {
-        setError('Failed to load comparison articles');
+        setError('Failed to load articles');
         console.error(err);
-        // Fallback to mock articles from cluster
-        setArticles(cluster.articles || []);
+        setArticles([]);
       } finally {
         setLoading(false);
       }
     };
     loadComparison();
-  }, [cluster._id, cluster.articles]);
+  }, [cluster._id, cluster.article_ids]);
 
   if (loading) {
     return (
